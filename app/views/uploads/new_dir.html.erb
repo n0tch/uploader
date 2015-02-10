@@ -1,0 +1,9 @@
+<h1>Carregou</h1>
+
+<%= form_tag 'new_dir', multipart: true do %>
+	<h3>Informe o nome da pasta: <%= text_field_tag :doc %></h3>
+	<br>
+	<%= submit_tag 'Enviar' %>
+<% end %>
+
+<%= link_to 'Voltar', root_path %>

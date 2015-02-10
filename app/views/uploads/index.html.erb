@@ -1,0 +1,67 @@
+<h1>Lista de arquivos</h1>
+<p>Path: <%= @path %></p>
+<%= notice %>
+
+<hr>
+<% if @arquivo %>
+	<h2>Pasta Vazia!</h2>
+<% else %>
+	<table>
+		<thead>
+			<tr>
+				<th>Arquivo</th>
+				<th>Tipo</th>
+				<th>Acao</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @arquivos.each do |arquivo| %>
+				<tr>
+					<td>
+						<p><%= truncate(arquivo, lenght: 5) %></p>
+					</td>
+					<td>
+						<p><%= File.extname(arquivo) %></p>
+					</td>
+					<td>
+						<%= link_to 'Download', uploads_download_path(doc: arquivo) , class: 'button' %>
+					</td>
+					<td>
+						<%= link_to 'Delete', uploads_remove_arquivo_path(doc: arquivo), class: 'button' , data: { confirm: 'Voce tem certeza?' }%>
+					</td>
+					<td>
+						<%= link_to 'Renomear', uploads_edit_path(doc: arquivo), method: :post  %>
+					</td>
+					<td>
+						<%= check_box("post", "validated") %>
+					</td>
+				</tr>
+			<% end %>	
+		</tbody>
+	</table>
+<% end %>
+<%= link_to 'Novo arquivo', new_upload_path, class: 'button' %>
+
+<h1>Lista de Pastas</h1>
+<p>Path: <%= $root %></p>
+<hr>
+<table>
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Acao</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @paths.each do |pasta|%>
+		<tr>
+			<td><%= link_to pasta %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<hr>
+<%= link_to 'Nova Pasta', uploads_new_dir_path, class: 'button' %>

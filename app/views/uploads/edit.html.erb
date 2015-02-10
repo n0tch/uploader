@@ -1,0 +1,12 @@
+<h1>Uploads#rename</h1>
+<p>Find me in app/views/uploads/rename.html.erb</p>
+
+<%= form_tag 'rename_file', multipart: true do %>
+	<p>
+		Informe o nome do arquivo: 
+		<%= text_field_tag :new_file_name, @arquivo %>
+		<br>
+		<%= submit_tag :go %>
+	</p>
+<% end %>
+<%= link_to 'Voltar', root_path %>

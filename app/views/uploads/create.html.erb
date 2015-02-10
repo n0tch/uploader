@@ -1,0 +1,12 @@
+<h1>Uploads#create</h1>
+<p>Find me in app/views/uploads/create.html.erb</p>
+
+<%= form_tag('create', multipart: true) do %>
+  	<%= file_field_tag :doc %> <br>
+	<hr>
+  	<%= submit_tag 'Submit' %>
+<% end %>
+ 
+ <br><br>
+
+ <%= link_to 'Voltar', root_path %>
