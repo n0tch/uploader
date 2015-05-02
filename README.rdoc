@@ -6,11 +6,11 @@ Things you may want to cover:
 
 * Ruby version
 
-	*+2.2.0p0
+	**2.2.0p0
 
 * System dependencies
 
-	*+Run <tt>bundle install</tt>
+	**Run <tt>bundle install</tt>
 
 * Configuration
 
