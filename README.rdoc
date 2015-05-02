@@ -4,19 +4,13 @@ Gerenciador de arquivos
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: 2.2.0p0
 
-	**2.2.0p0
-
-* System dependencies
-
-	**Run <tt>bundle install</tt>
+* System dependencies: Run <tt>bundle install</tt>
 
 * Configuration
 
-* Database creation
-
-	*+No database needed
+* Database creation: No database needed
 
 * Database initialization
 
