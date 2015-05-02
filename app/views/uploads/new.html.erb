@@ -1,13 +1,10 @@
 <h1>Uploads#new</h1>
 <p>Find me in app/views/uploads/new.html.erb</p>
 
-<%= form_tag('create', multipart: true) do %>
-  	<%= file_field_tag :doc %> <br><br>
-  	<%= check_box :leitura, :create %><%= label_tag 'Leitura'%> <br>
-  	<%= check_box :escrita, :create %><%= label_tag 'Escrita'%> <br>
-  	<%= check_box :executar, :create %><%= label_tag 'Executar'%> <br>
+<%= form_tag('create', multipart: true, method: :post) do %>
+  	<!-- multiple: true -->
+  	<%= file_field_tag :doc, :multiple => true, name: "array[]" %>
 	<hr>
   	<%= submit_tag 'Submit' %>
 <% end %>
-<br>
 <%= link_to 'Voltar', root_path %>

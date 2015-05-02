@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require syntax-highlighter-rails/shCore
+//= require syntax-highlighter-rails/shBrushCpp
 //= require turbolinks
 //= require_tree .

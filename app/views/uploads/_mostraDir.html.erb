@@ -1,0 +1,33 @@
+<table>
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Acao</th>
+			<th colspan="2">Permicoes</th>
+			<th>Modificacao</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @paths.each do |pasta|%>
+		<tr>
+			<td><%= link_to pasta, uploads_troca_caminho_path(caminho: pasta) %></td>
+			<td>
+				<% if pasta == '.' %>
+					<% next %>
+				<% elsif pasta == '..'%>
+					<% next %> 
+				<% else %>
+					<%= link_to "Delete", uploads_remove_arquivo_path(doc: pasta), data: { confirm: 'Confirmar acao DELETE para pasta "'+ pasta + '" ?' }, confirm: 'Are you sure?' , :popup => true %>
+				<% end %>
+			</td>
+
+			<td>Leitura</td>
+
+			<td>Escrita</td>
+
+			<td><%= File.mtime(pasta) %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

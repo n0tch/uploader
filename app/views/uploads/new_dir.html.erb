@@ -1,8 +1,14 @@
 <h1>Carregou</h1>
-
-<%= form_tag 'new_dir', multipart: true do %>
-	<h3>Informe o nome da pasta: <%= text_field_tag :doc %></h3>
-	<br>
+<%= notice %>
+<%= form_tag 'cria_pasta', method: :post do %>
+	<h3>Informe o nome da pasta:</h3>
+	<%= text_field_tag :doc %> <br>
+	<h4>
+		Permissoes: 
+		<%= check_box_tag 'leitura' %><%= label_tag 'Leitura' %>
+  		<%= check_box :escrita,1, checked: true %><%= label_tag 'Escrita' %>
+  		<%= check_box_tag 'leitura', 1, true %>
+	</h4>
 	<%= submit_tag 'Enviar' %>
 <% end %>
 

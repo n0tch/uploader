@@ -1,17 +1,22 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Gerenciador de arquivos
 
 Things you may want to cover:
 
 * Ruby version
 
+	-2.2.0p0
+
 * System dependencies
+
+	- Run <tt>bundle install</tt>
 
 * Configuration
 
 * Database creation
+
+	-No database needed
 
 * Database initialization
 
@@ -20,8 +25,6 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
 
 
 Please feel free to use a different markup language if you do not plan to run

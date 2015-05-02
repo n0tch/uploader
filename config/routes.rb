@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+  # resources :upload
+
   get 'uploads/index'
 
   get 'uploads/new'
@@ -17,11 +20,21 @@ Rails.application.routes.draw do
 
   post 'uploads/new_dir'
 
-  post 'uploads/rename_file'
+  get 'uploads/show'
 
-  post 'uploads/edit'
+  get 'uploads/troca_caminho'
 
-  resources :uploads
+  post 'uploads/delete_dir'
+
+  get 'uploads/delete_checkbox'
+
+  get 'uploads/download_zip'
+
+  post 'uploads/cria_pasta'
+
+  get 'uploads/login'
+
+  post 'uploads/autenticar'
 
   root 'uploads#index'
   # post '/uploads/create' => 'uploads#create'

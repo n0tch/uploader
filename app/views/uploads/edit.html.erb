@@ -3,6 +3,7 @@
 
 <%= form_tag 'rename_file', multipart: true do %>
 	<p>
+		Arquivo antigo: <%= text_field_tag :doc %> <br>
 		Informe o nome do arquivo: 
 		<%= text_field_tag :new_file_name, @arquivo %>
 		<br>

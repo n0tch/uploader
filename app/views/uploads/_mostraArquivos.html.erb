@@ -1,0 +1,47 @@
+<table border="1">
+		<thead>
+			<tr>
+				<th>Arquivo</th>
+				<th>Extençao</th>
+				<th>Acao</th>
+				<th colspan="3">Deletar</th>
+				<th>Modificacao</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @arquivos.each do |arquivo| %>
+				<tr>
+					<td>
+						<p><%= link_to arquivo, uploads_show_path(doc: arquivo) %></p>
+					</td>
+					<td>
+						<p><%= File.extname(arquivo) %></p>
+					</td>
+					<td>
+						<p>
+							<% if File.size(arquivo) > 1024 %>
+							<%=  "± #{File.size(arquivo) / 1024} KB" %>
+							<% else %>
+							<%= "#{File.size(arquivo)} BYTES"%>
+							<% end %>
+						</p>
+					</td>
+					<td>
+						<%= link_to 'Download', uploads_download_path(doc: arquivo) %>
+					</td>
+					<td>
+						<%= link_to 'Delete', uploads_remove_arquivo_path(doc: arquivo), data: { confirm: "Confirmar acao DELETE para arquivo '#{arquivo}' ?" } %>
+					</td>
+					<td>
+						<%= check_box_tag "delete[]", 	checked: false,  name: 'delete[]', id: 'delete[]' %>
+						
+					</td>
+
+					<td>
+						<%= File.ctime(arquivo) %>
+					</td>
+				</tr>
+			<% end %>	
+		</tbody>
+	</table>

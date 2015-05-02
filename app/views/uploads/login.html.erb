@@ -1,0 +1,10 @@
+<%= form_tag 'autenticar', method: :post do %>
+	<%= notice %>
+	<h3>Username: <%= text_field_tag :username %></h3>
+	
+	<h3>Senha: <%# text_field_tag :senha %></h3>
+
+	<input type="password" id="senha">
+
+	<%= submit_tag 'Enviar'%>
+<% end %>
