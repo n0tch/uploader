@@ -1,10 +1,9 @@
 class UploadsController < ApplicationController
-  before_action :find_uploads_file, only: [:index]
-  before_action :find_upload_directory, only: [:index]
-  # before_action :authenticate_user!
-  
+  before_action :find_uploads_file, :find_upload_directory, only: [:index]
+
   def initialize
-    $root = Dir.pwd+'/'
+    $root =  Dir.pwd+'/'
+    # session[:current_user] = num + Random.rand(10)
   end
   
   def index
@@ -38,7 +37,7 @@ class UploadsController < ApplicationController
   end
   
   def cria_pasta
-    criar_pasta(params[:doc].to_s, params[:leitura], params[:escrita])
+    criar_pasta(params[:doc].to_s, params[:leitura].to_i, params[:escrita].to_i)
     redirect_to root_path
   end
   
@@ -64,6 +63,7 @@ class UploadsController < ApplicationController
     f = File.open($root+params[:doc], 'r')
     f.each_line do |line|
       # line.replace("<br>", "")
+      # line.gsub(/,/, "<br/>")
       next if line.chomp("\n") == ''
       @texto << line.chomp("\n")
     end
@@ -82,10 +82,24 @@ class UploadsController < ApplicationController
     
     Zip::File.open(temp_file.path, Zip::File::CREATE) do |zip_file|
         #put files in here
-        zip_file.add("config.ru", $root + "/config.ru")
+        Dir.foreach(Dir.pwd) do |pasta|
+          if File.directory?(pasta)
+            Dir.foreach(pasta) do |subpasta1|
+              if File.file?(subpasta1)
+                zip_file.add(subpasta1, $root + pasta + subpasta1)
+              end
+            end
+          else
+            zip_file.add(pasta, $root + pasta)
+          end
+        end
     end
     zip_data = File.read(temp_file.path)
     send_data(zip_data, :type => 'application/zip', :filename => filename)
+  end
+
+  def rename_file
+    
   end
 
   def login
@@ -114,14 +128,6 @@ class UploadsController < ApplicationController
         @arquivos << item
       end
     end
-      #if item == 'Gemfile' or item == 'Rakefile'
-        #@arquivos << item
-      #else
-        #next if File.extname(item).to_s == "" 
-        #next if File.directory?(item) 
-        #@arquivos << item
-      #end
-    #end
   end
 
   def find_upload_directory
@@ -130,11 +136,6 @@ class UploadsController < ApplicationController
       if File.directory?(item)
         @paths << item
       end
-      #next if item == '.'
-      #next if item == 'Gemfile' or item == 'Rakefile'
-      #if File.extname(item).to_s == ""
-        #@paths << item
-      #end
     end
   end
 
@@ -147,11 +148,15 @@ class UploadsController < ApplicationController
 
   def criar_pasta(nome, leitura, escrita)
     Dir.mkdir($root+nome) unless File.exist?($root+nome)
-    if leitura == 1
-      FileUtils.chmod(0222 , $root+nome, :verbose => true)
+    if leitura == 1 and escrita == 1
+      FileUtils.chmod(0666, $root+nome, :verbose => true)
+    elsif leitura == 1 and escrita == 0
+      FileUtils.chmod(0444, $root+nome, :verbose => true)
+    elsif leitura == 0 and escrita == 1
+      FileUtils.chmod(0222, $root+nome, :verbose => true)
+    else
+      FileUtils.chmod(0000, $root+nome, :verbose => true)
     end
-    flash[:notice] = "Leitura: #{leitura}, Escrita: #{escrita}"
-
   end
 
   def deletar_pasta(nome)

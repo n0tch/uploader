@@ -4,7 +4,7 @@
 			<th>Nome</th>
 			<th>Acao</th>
 			<th colspan="2">Permicoes</th>
-			<th>Modificacao</th>
+			<th>Modificado em</th>
 		</tr>
 	</thead>
 
@@ -26,7 +26,7 @@
 
 			<td>Escrita</td>
 
-			<td><%= File.mtime(pasta) %></td>
+			<td><%= File.ctime(pasta).strftime("%d de %b de %Y às %H:%M:%S") %></td>
 		</tr>
 		<% end %>
 	</tbody>

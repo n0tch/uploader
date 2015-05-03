@@ -4,10 +4,13 @@
 	<h3>Informe o nome da pasta:</h3>
 	<%= text_field_tag :doc %> <br>
 	<h4>
-		Permissoes: 
-		<%= check_box_tag 'leitura' %><%= label_tag 'Leitura' %>
-  		<%= check_box :escrita,1, checked: true %><%= label_tag 'Escrita' %>
-  		<%= check_box_tag 'leitura', 1, true %>
+		Permissoes:
+		<%= check_box_tag(:leitura) %>
+		<%= label_tag(:leitura, "Leitura") %>
+		<%# check_box_tag 'leitura',1 %><%# label_tag 'Leitura' %>
+  		<%= check_box_tag(:escrita) %>
+  		<%= label_tag(:escrita, "Escrita") %>
+  		
 	</h4>
 	<%= submit_tag 'Enviar' %>
 <% end %>

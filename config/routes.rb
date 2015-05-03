@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # resources :upload
 
+  # map.resource :uploads
   get 'uploads/index'
 
   get 'uploads/new'
@@ -36,6 +37,8 @@ Rails.application.routes.draw do
 
   post 'uploads/autenticar'
 
+  get 'uploads/edit'
+  
   root 'uploads#index'
   # post '/uploads/create' => 'uploads#create'
 
